@@ -20,7 +20,7 @@
   justify-content: center;
 }
 .title {
-  margin: 0 0 10vh 0; /*標題和按鈕群的間距*/
+  margin: 0 0 10vh 0;
   font-size: clamp(42px, 5vw, 64px);
   letter-spacing: 0.04em;
   font-weight: 800;
@@ -28,7 +28,7 @@
 .btnGroup {
   display: flex;
   flex-direction: column;
-  gap: 22px; /* 兩顆按鈕之間距離 */
+  gap: 22px;
 }
 
 .btnBig {

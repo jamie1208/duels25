@@ -1,0 +1,117 @@
+.card {
+  width: 90px;
+  height: 130px;
+}
+
+.card-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d; /*保留z軸結構*/
+}
+
+/* facedown時，讓背面在上 */
+.card.faceDown .card-container {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  border: 4px solid #333;
+  box-shadow: 6px 10px 0 rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+  user-select: none;
+  backface-visibility: hidden;
+}
+
+/* 正面 */
+.front {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+/* 背面 */
+.back {
+  background: linear-gradient(135deg, #ffe8c8, #ffd6e8, #d6e9ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform: rotateY(180deg);
+}
+
+/* hovor */
+.card.hover:hover {
+  transform: translateY(-10px) scale(1.03);
+  cursor: pointer;
+}
+
+.back::before {
+  content: "DUEL";
+  font-size: 32px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.25);
+  transform: rotate(-10deg);
+}
+
+/* 點點裝飾 */
+.back::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 12px;
+  border: 2px dashed rgba(0, 0, 0, 0.2);
+}
+
+/* 中央花色 */
+.card .center {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+/* 角落 */
+.corner {
+  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.corner.top {
+  top: 8px;
+  left: 8px;
+}
+
+.corner.bottom {
+  bottom: 8px;
+  right: 8px;
+  transform: rotate(180deg);
+}
+
+/* 顏色 */
+.red {
+  color: #e74c3c;
+}
+
+.blue {
+  color: #3498db;
+}
+
+/* selected */
+.card.selected .front {
+  transform: translateY(-20px) scale(1.05);
+  border: 6px solid rgb(243, 89, 89);
+}
+
+/* notshow */
+.card.notshow {
+  visibility: hidden;
+}

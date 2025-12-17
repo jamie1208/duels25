@@ -1,0 +1,45 @@
+/* 整條 HP Bar */
+.hp-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Arial Rounded MT Bold", system-ui, sans-serif;
+}
+
+/* 左邊圓圈 */
+.hp-circle {
+  width: 42px;
+  height: 42px;
+  border: 4px solid #1565c0;
+  background: radial-gradient(circle at top left, #ff5252, #ff1744);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 0 #b71c1c;
+  z-index: 1;
+}
+
+/* 血條底 */
+.hp-track {
+  position: relative;
+  left: -10%;
+  width: 160px;
+  height: 22px;
+  background: #4fc3f7;
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: inset 0 0 0 3px #1565c0;
+  overflow: hidden;
+}
+
+/* 血量本體 */
+.hp-fill {
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(to right, #ff5252, #ff1744);
+  transition: width 0.4s ease;
+}

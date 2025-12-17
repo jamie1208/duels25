@@ -1,232 +1,229 @@
-import React, { useState, useEffect } from "react";
-// import Card from "../components/Card";
-// import HPBar from "../components/HPBar";
-// import { useNavigate } from "react-router-dom";
-import "../style/style.css";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Card from "../components/Card";
+import HPBar from "../components/HPBar";
+import "../style/game.css";
 
-// const new_data = {
-//   turn: 1,
-//   me: {
-//     nickname: "jamie",
-//     hp: 15,
-//     deckCount: 19,
-//     hand: ["K_S", "4_C", "3_D", "J_H", "5_H"], //HSDC 是花色
-//   },
-//   opponent: {
-//     nickname: "henry",
-//     hp: 25,
-//     deckCount: 9,
-//     hand: ["K_S", "4_R", "J_C", "3_S", "A_D"],
-//     playCard: "Q_C", //輪到me時, 對手已經選好了
-//   },
-//   status: "PLAYING",
-// };
-// const new_data2 = {
-//   turn: 1,
-//   me: {
-//     nickname: "jamie",
-//     hp: 15,
-//     deckCount: 18,
-//     hand: ["K_S", "4_C", "3_D", "J_H", "5_H"], //HSDC 是花色
-//   },
-//   opponent: {
-//     nickname: "henry",
-//     hp: 0,
-//     deckCount: 8,
-//     hand: ["K_S", "4_R", "J_C", "3_S", "A_D"],
-//     playCard: "Q_C", //輪到me時, 對手已經選好了
-//   },
-//   status: "OVER",
-// };
-const GamePage = () => {
-  //   let ngv = useNavigate();
-  //   let [gameState, setGameState] = useState(null); //API 包含目前手中的卡牌,對手的卡牌,hp值,輪到誰
-  //   let [loading, setLoading] = useState(true);
-  //   let [selectedcardIndex, setSelectedcardIndex] = useState(null);
-  //   let [flipped, setFlipped] = useState(false);
-  //   let [battlecard, setBattlecard] = useState(null);
-  //   let [moveingCard, setMovingCard] = useState(null);
-  //   let [ismoving, setismoving] = useState(null);
-  //   let [myHp, setmyHp] = useState(null);
-  //   let [opponentHp, setOpponentHp] = useState(null);
-  //   let [hpAnimation, sethpAnimation] = useState(false);
-  //   //遊戲掛載時就fetch 初始資料
-  //   useEffect(() => {
-  //     //fectch API data
-  //     const data = {
-  //       turn: 1,
-  //       me: {
-  //         nickname: "jamie",
-  //         hp: 18,
-  //         deckCount: 20,
-  //         hand: ["K_S", "5_C", "3_D", "J_H", "3_H"], //HSDC 是花色
-  //       },
-  //       opponent: {
-  //         nickname: "henry",
-  //         hp: 20,
-  //         deckCount: 10,
-  //         hand: ["K_S", "4_R", "J_C", "3_S", "A_D"],
-  //         playCard: "Q_C", //輪到me時, 對手已經選好了
-  //       },
-  //       status: "PLAYING",
-  //     };
-  //     //set initial state
-  //     setGameState(data);
-  //     setLoading(false);
-  //     return;
-  //   }, []);
-  //   //按下confirm buutton 後
-  //   let buttonHandler = (e) => {
-  //     //沒有選擇牌
-  //     if (!selectedcardIndex) {
-  //       alert("沒有選擇牌");
-  //       return;
-  //     }
-  //     if (gameState.turn !== 1) {
-  //       return;
-  //     }
-  //     gameState.turn = -1;
-  //     //move hand card
-  //     setMovingCard(gameState.me.hand[selectedcardIndex]);
-  //     gameState.me.hand.splice(selectedcardIndex, 1);
-  //     setismoving(true);
-  //     //把選的牌送給後端
-  //     //等待後端回傳計算完畢的hp and new state, 翻牌, 輸出結果
-  //     const timer = setTimeout(() => {
-  //       setFlipped(true);
-  //       setmyHp(-5);
-  //       setOpponentHp(2);
-  //       sethpAnimation(true);
-  //     }, 3000);
-  //   };
-  //   let animationEnd = (e) => {
-  //     setBattlecard(moveingCard);
-  //     console.log(Array.isArray(gameState.me.hand));
-  //     setismoving(false);
-  //   };
-  //   let hpanimaionEnd = (e) => {
-  //     setmyHp(null);
-  //     setOpponentHp(null);
-  //     sethpAnimation(false);
-  //     setGameState(new_data);
-  //     setBattlecard(null);
-  //     setFlipped(false);
-  //   };
-  //   if (loading) {
-  //     return <div style={{ textAlign: "center" }}>載入遊戲中</div>;
-  //   }
-  //   return (
-  //     <div
-  //       style={{
-  //         margin: "40px",
-  //       }}
-  //     >
-  //       <div>
-  //         {/* 敵方資訊 */}
-  //         <HPBar name={gameState.opponent.nickname} hp={gameState.opponent.hp} />
-  //         <label>Deck: {gameState.opponent.deckCount}</label>
-  //       </div>
-  //       <div //   戰鬥區
-  //         style={{
-  //           display: "flex",
-  //           position: "relative",
-  //           margin: "10px",
-  //           justifyContent: "center",
-  //           alignItems: "center",
-  //         }}
-  //       >
-  //         {/* 對方的戰鬥卡 */}
-  //         <div>
-  //           <p
-  //             className={hpAnimation ? "hp_animation" : ""}
-  //             onAnimationEnd={hpanimaionEnd}
-  //             style={{
-  //               height: "2px",
-  //               display: "flex",
-  //               justifyContent: "center",
-  //               margin: "30px",
-  //             }}
-  //           >
-  //             {opponentHp}
-  //           </p>
-  //           <Card
-  //             value={gameState.opponent.playCard}
-  //             flipped={flipped}
-  //             isFaceUp={true}
-  //           />
-  //         </div>
-  //         <div
-  //           style={{
-  //             display: "flex",
-  //             textAlign: "center",
-  //             fontSize: "40px",
-  //             alignItems: "center",
-  //           }}
-  //         >
-  //           VS
-  //         </div>
-  //         {/* 自己的戰鬥卡 */}
-  //         <div>
-  //           <p
-  //             className={hpAnimation ? "hp_animation" : ""}
-  //             onAnimationEnd={hpanimaionEnd}
-  //             style={{
-  //               height: "2px",
-  //               display: "flex",
-  //               justifyContent: "center",
-  //               margin: "30px",
-  //             }}
-  //           >
-  //             {myHp}
-  //           </p>
-  //           <Card value={battlecard} notshow={!battlecard} />
-  //         </div>
-  //       </div>
-  //       <div>
-  //         {/* 玩家操作 */}
-  //         <HPBar name={gameState.me.nickname} hp={gameState.me.hp}></HPBar>
-  //         <label>Deck: {gameState.me.deckCount}</label>
-  //         <div
-  //           style={{
-  //             display: "flex",
-  //             flexWrap: "wrap",
-  //             justifyContent: "space-around",
-  //           }}
-  //         >
-  //           {gameState.me.hand.map((card, index) => (
-  //             <Card
-  //               value={card}
-  //               selected={card === gameState.me.hand[selectedcardIndex]}
-  //               onClick={() => setSelectedcardIndex(index)}
-  //               hover={true}
-  //               isFaceUp={false}
-  //             />
-  //           ))}
-  //         </div>
-  //         <button
-  //           className="comfirm_card"
-  //           onClick={buttonHandler}
-  //           style={{
-  //             position: "relative",
-  //             left: "80vw",
-  //             top: "6vh",
-  //             fontSize: "2rem",
-  //             border: "1px solid black",
-  //             borderRadius: "1rem",
-  //           }}
-  //         >
-  //           確認出牌
-  //         </button>
-  //       </div>
-  //       {ismoving && (
-  //         <Card
-  //           value={moveingCard}
-  //           className="move_card"
-  //           onAnimationEnd={animationEnd}
-  //         />
-  //       )}
-  //     </div>
-  //   );
-};
+//mock api
+import {
+  apiInitGame,
+  apiSubmitBattleCard,
+  apiResolveBattle,
+} from "../api/gameAPI.jsx";
 
-export default GamePage;
+export default function GamePage({ setWin }) {
+  let ngv = useNavigate();
+  // choosing -> 自己選牌的時間
+  // waiting -> 若對方的牌還沒來要等
+  // calculating -> 等待後端計算的時間
+  let [gameInfo, setGameInfo] = useState(null);
+  let [gameState, setGameState] = useState("choosing");
+  let [selectedIndex, setSelectedIndex] = useState(null);
+  let [myBattleCard, setMyBattleCard] = useState(null); //ex:"1J" (value suit)
+
+  //初始化資料
+  useEffect(() => {
+    // await 只能用在 async funtion 裡
+    async function init() {
+      const data = await apiInitGame();
+      setGameInfo(data);
+    }
+    init();
+  }, []);
+
+  useEffect(() => {
+    console.log(gameState);
+  }, [gameState]);
+
+  //當hp結算時，要先進行animation, 再將state->choosing
+  useEffect(() => {
+    if (!gameInfo || !gameInfo.my_hp_change) return;
+
+    const t = setTimeout(() => {
+      setGameInfo((prev) => ({
+        ...prev,
+        oppenent_battle_card: null,
+        hp_count: [null, null],
+      }));
+      setMyBattleCard(null);
+      setGameState("choosing");
+    }, 3000);
+
+    return () => clearTimeout(t);
+  }, [gameInfo?.my_hp_change]);
+
+  //當有winner時，也要先進行animation，再結束遊戲
+  useEffect(() => {
+    if (!gameInfo || !gameInfo.win) return;
+    const t = setTimeout(() => {
+      setWin(gameInfo.win);
+      ngv("/end");
+    }, 3000);
+  }, [gameInfo?.win]);
+
+  let confirmHandler = async () => {
+    // 不能submit的情況
+    if (selectedIndex == null) {
+      alert("choose one card!");
+      return;
+    } else if (gameState !== "choosing") {
+      alert("現在不能選");
+      setSelectedIndex(null);
+      return;
+    }
+
+    // 設定battleCard, 清除selectedIndex, 更新hand card
+    const bat_card = gameInfo.my_info.hand[selectedIndex];
+    setMyBattleCard(bat_card);
+    setSelectedIndex(null);
+    setGameInfo((prev) => ({
+      ...prev,
+      my_info: {
+        ...prev.my_info,
+        hand: prev.my_info.hand.filter((_, i) => i !== selectedIndex),
+      },
+    }));
+
+    //------Submit BattleCard---------
+    //送出自己的battleCard, 並等對方的battleCard
+    setGameState("waiting");
+    const op_battleCard = await apiSubmitBattleCard(bat_card);
+    // 看到對方的卡牌後，更新info,並等待後端計算完hp
+    setGameInfo((prev) => ({
+      ...prev,
+      oppenent_info: {
+        ...prev.oppenent_info,
+        hand: prev.oppenent_info.hand.filter((e, i) => e !== op_battleCard),
+      },
+      oppenent_battle_card: op_battleCard,
+    }));
+
+    //------Calculate Battle Result---------
+    setGameState("calculating");
+    const result = await apiResolveBattle();
+    //先更新hp資料，讓hp animation 跑完，再清除 battleCard
+    setGameInfo((prev) => ({
+      ...prev,
+      my_info: {
+        ...prev.my_info,
+        HP: result.my_hp,
+        hand: result.my_hand,
+      },
+      oppenent_info: {
+        ...prev.oppenent_info,
+        HP: result.op_hp,
+        hand: result.op_hand,
+      },
+      // oppenent_battle_card: null,
+      hp_count: [result.my_hp_change, result.op_hp_change],
+      win: result.win,
+    }));
+  };
+
+  if (!gameInfo) return null;
+  return (
+    <div className="game-board">
+      {/* Top Area : opponent */}
+      <div className="opponent-area">
+        {/* 頭像+名字＋hp */}
+        <div className="player-info">
+          <div className="head-circle">
+            <div className="head-op"></div>
+          </div>
+          <div className="name">{gameInfo.oppenent_info.name}</div>
+          <div className="hp-area">
+            <HPBar hp={gameInfo.oppenent_info.HP} />
+            {/* 戰鬥後的hp加減值 */}
+            <div key={Date.now()} className="hp-info hp-change">
+              {gameInfo.hp_count[1]}
+            </div>
+          </div>
+        </div>
+        {/* opponent card */}
+        <div className="card-row">
+          {gameInfo.oppenent_info.hand.map((c, i) => {
+            return <Card key={i} value={c[0]} suit={c[1]} faceDown />;
+          })}
+        </div>
+      </div>
+
+      {/* Middle Area: duel */}
+      <div className="battle-area">
+        <div className="battle-circle left">
+          <div className="battle-card">
+            {gameInfo.oppenent_battle_card && (
+              <Card
+                value={gameInfo.oppenent_battle_card[0]}
+                suit={gameInfo.oppenent_battle_card[1]}
+              />
+            )}
+          </div>
+        </div>
+        <div className="card-deck">
+          <div className="battle-card">
+            <Card faceDown />
+          </div>
+          <div className="Deck-info">
+            <span>Deck :</span>
+            <span>{gameInfo.deck}</span>
+          </div>
+        </div>
+
+        <div className="battle-circle right">
+          <div className="battle-card">
+            {myBattleCard ? (
+              <Card value={myBattleCard[0]} suit={myBattleCard[1]} />
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Botton area : me */}
+      <div className="player-area">
+        {/* 頭像+名字＋hp */}
+        <div className="player-info">
+          <div className="head-circle">
+            <div className="head-me"></div>
+          </div>
+          <div className="name">{gameInfo.my_info.name}</div>
+          <div className="hp-area">
+            <HPBar hp={gameInfo.my_info.HP} />
+            <div key={Date.now()} className="hp-info hp-change">
+              {gameInfo.hp_count[0]}
+            </div>
+          </div>
+        </div>
+        {/* 從後端取得的手排資料 */}
+        <div className="card-row">
+          {gameInfo.my_info.hand.map((c, i) => {
+            return (
+              <Card
+                key={i}
+                value={c[0]}
+                suit={c[1]}
+                selected={i === selectedIndex}
+                onClick={() => {
+                  setSelectedIndex(i);
+                }}
+                hover={true}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      {/* submit card button */}
+      <button
+        type="button"
+        className="btn-confirm"
+        onClick={() => {
+          confirmHandler();
+        }}
+      >
+        確認出牌
+      </button>
+    </div>
+  );
+}

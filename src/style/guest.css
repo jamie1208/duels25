@@ -111,7 +111,6 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 12px 36px rgba(0, 0, 0, 0.22);
 }
 
-/* 兩顆按鈕排版：用 gap 比 space-around 穩 */
 .btnRow {
   display: flex;
   gap: 5vw;
@@ -120,7 +119,6 @@
   margin-top: 6px;
 }
 
-/* 按鈕：改成比較像你圖那種圓形/可愛小按鈕 */
 .btn {
   width: 10vw;
   height: 5vh;
@@ -146,4 +144,17 @@
 .btn:active {
   transform: translateY(6px);
   box-shadow: 0 4px 0 rgba(0, 0, 0, 0.18), 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+.matchStatus {
+  margin-top: 12px;
+  font-weight: 700;
+  height: 24px;
+}
+
+.matchStatus .ok {
+  color: #4caf50;
+}
+
+.matchStatus .fail {
+  color: #e53935;
 }

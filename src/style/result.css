@@ -1,0 +1,99 @@
+.win-screen {
+  position: fixed;
+  inset: 0;
+  background-image: url("../resource/result_background.png");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Arial Black", Impact, system-ui, sans-serif;
+}
+
+.image {
+  width: 60%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hearts {
+  display: flex;
+  gap: 2em;
+}
+
+.heart {
+  font-size: 48px;
+}
+
+.heart.full {
+  color: #6ecbff;
+}
+
+.heart.empty {
+  color: transparent;
+  -webkit-text-stroke: 4px black;
+}
+
+.game-over {
+  font-size: 8em;
+  line-height: 0.95;
+  color: #000;
+
+  text-shadow: 4px 4px 0 #5ecbff, /* 藍 */ 8px 8px 0 #7b3fe4,
+    /* 紫 */ 12px 12px 0 #000; /* 最外層黑 */
+}
+
+.lose-win {
+  margin-top: 1em;
+  font-size: 2em;
+  color: #000;
+}
+.result-buttons {
+  margin-top: 1em;
+  display: flex;
+  gap: 40vw;
+}
+
+.btn {
+  min-width: 160px;
+  padding: 14px 24px;
+  font-size: 20px;
+  font-weight: 900;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.25), 0 12px 24px rgba(0, 0, 0, 0.15);
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn.replay {
+  background: linear-gradient(180deg, #8fd3ff, #4fb3ff);
+  color: #0b2a44;
+}
+
+.btn.replay:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.25), 0 16px 30px rgba(0, 0, 0, 0.2);
+}
+
+.btn.replay:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn.exit {
+  background: linear-gradient(180deg, #ffe6c7, #f1c27d);
+  color: #4a2f12;
+}
+
+.btn.exit:hover {
+  transform: translateY(-2px);
+}
+
+.btn.exit:active {
+  transform: translateY(4px);
+}

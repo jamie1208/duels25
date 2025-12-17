@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/menu.css";
 
@@ -37,7 +36,13 @@ const LandingPage = () => {
           訪客模式
         </button>
       </div>
-      <button className="btnSmall" type="button">
+      <button
+        className="btnSmall"
+        type="button"
+        onClick={() => {
+          ngv("/rule");
+        }}
+      >
         玩法說明
       </button>
     </div>
