@@ -148,14 +148,14 @@ const result = await playCard({
 
 ## 專案狀態
 
-- ✅ 前端頁面完成
-- ✅ 遊戲流程與 UI 邏輯完成
-- ✅ 使用 Mock API 模擬後端
-- ⏳ 尚未串接真實後端（AWS / AppSync / WebSocket）
+- 前端頁面完成
+- 遊戲流程與 UI 邏輯完成
+- 使用 Mock API 模擬後端
+- 尚未串接真實後端（AWS / AppSync / WebSocket）
 
 ---
 
-## 👤 作者 / 負責內容
+## 作者 / 負責內容
 
 - **Frontend Developer**
 
@@ -166,7 +166,7 @@ const result = await playCard({
 
 ---
 
-## 📎 備註
+## 備註
 
 - 本專案適合用於：
 
