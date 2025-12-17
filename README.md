@@ -41,8 +41,6 @@
 npm install
 ```
 
-````
-
 ### 2. 啟動開發伺服器
 
 ```bash
@@ -177,4 +175,7 @@ const result = await playCard({
   - 前後端分工展示（Frontend Only）
 
 - 若未來串接真實後端，可直接替換 `src/api` 內容
-````
+
+```
+
+```
