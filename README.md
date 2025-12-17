@@ -174,8 +174,4 @@ const result = await playCard({
   - 課堂專案
   - 前後端分工展示（Frontend Only）
 
-- 若未來串接真實後端，可直接替換 `src/api` 內容
-
-```
-
-```
+- 若串接真實後端，可直接替換 `src/api` 內容
