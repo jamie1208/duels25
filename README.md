@@ -168,10 +168,4 @@ const result = await playCard({
 
 ## 備註
 
-- 本專案適合用於：
-
-  - 前端展示
-  - 課堂專案
-  - 前後端分工展示（Frontend Only）
-
 - 若串接真實後端，可直接替換 `src/api` 內容
